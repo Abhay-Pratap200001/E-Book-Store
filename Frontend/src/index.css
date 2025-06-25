@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@500&display=swap');
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 @plugin "daisyui";
 
-
+/* *{
+  background-color: #000;
+} */
 
 body{
   background-color: #000;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-
  }

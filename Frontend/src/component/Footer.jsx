@@ -4,10 +4,10 @@ function Footer() {
   return (
     <div>
       {/* Horizontal line to separate the footer from the content*/}
-      <hr />
-
+         <hr />
+    
       {/* Main footer container with padding and centered content */}
-      <footer className="footer footer-horizontal footer-center text-base-content rounded p-10">
+      <footer className="footer footer-horizontal footer-center text-base-content rounded p-10 w-full">
       
         {/* footer links (About, Contact, Jobs, etc.) */}
         <nav className="grid grid-flow-col gap-4">

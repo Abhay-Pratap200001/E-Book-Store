@@ -5,7 +5,7 @@ function Banner() {
   return (
     <>
       {/* Managing the banner partent div with for the mobile and lap screen  */}
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 flex flex-col md:flex-row my-10">
+      <div className="max-w-screen-2xl w-full mx-auto md:px-20 px-4 flex  flex-col md:flex-row my-10">
 
         {/* left side of div section  input = email, and button */}
         <div className="w-full order-2 md:order-1 md:w-1/2 mt-12 md:mt-32">

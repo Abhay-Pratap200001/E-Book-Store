@@ -48,7 +48,7 @@ function Freebook() {
   return (
     <>
       {/* Page container with spacing */}
-      <div className="max-w-screen-2xl container mx-auto md:px-20 px-4 mt-6">
+      <div className="max-w-screen-2xl container mx-auto md:px-20 py-4 mt-6">
         <div>
              {/* Heading and description */}
           <h1 className="font-semibold text-xl pb-2">Grab Now Free Books</h1>
