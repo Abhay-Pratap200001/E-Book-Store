@@ -1,36 +1,27 @@
-// import React from 'react'
-// import Navbar from './component/Navbar'
-// import Banner from './component/Banner'
-// import Footer from './component/Footer'
-
-// function App() {
-//   return (
-//     <div >
-
-//       <Navbar/>
-//       <Banner/>
-//       <Footer/>
-//     </div>
-//   )
-// }
-
-// export default App
-
-
 import React from "react";
-import Navbar from "./component/Navbar";
-import Banner from "./component/Banner";
-import Footer from "./component/Footer";
-import Freebook from "./component/Freebook";
-import Cards from "./component/Card";
+import Home from "./home/Home";
+import { Route, Routes } from "react-router-dom";
+import Courses from "./courses/Courses";
+import Signup from "./component/Signup";
 
 function App() {
   return (
-    <div className="min-h-screen bg-black text-white">
-      <Navbar />
-      <Banner />
-      <Freebook/>
-      <Footer />
+    // Set up a black background and prevent content overflow
+    <div className="min-h-screen bg-black overflow-hidden">
+
+      {/* Defining dynamic routes using React Router */}
+      <Routes>
+
+        {/* Route for homepage */}
+        <Route path="/" element={<Home />} />
+
+        {/* Route for courses page */}
+        <Route path="/course" element={<Courses />} />
+
+        {/* Route for signup page */}
+        <Route path="/singup" element={<Signup />} />
+        
+      </Routes>
     </div>
   );
 }
