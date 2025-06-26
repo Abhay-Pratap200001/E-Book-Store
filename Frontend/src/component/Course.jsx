@@ -1,10 +1,25 @@
 import React from "react";
-import list from "../component/list.json"; // Importing course data from a JSON file
 import Cards from "./Card";  //Card component to display each course
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios"
 
 
 function Course() {
+  const [book, setBook] = useState([])
+  useEffect(() =>{
+    const getBook = async ()  =>{
+      try {
+        const res = await axios.get("http://localhost:4001/book")
+        console.log(res.data);
+        setBook(res.data)
+          } catch (error) {
+        console.log("EROOR", Error);
+        }
+    };
+    getBook()
+  }, []);
+  
   return (
      <>
       {/* Outer container with max width and padding */}
@@ -35,7 +50,7 @@ function Course() {
 
                 {/* Grid layout to display all courses using Cards component */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
-            {list.map((item) =>(
+            {book.map((item) =>(
                 <Cards key={item.id} item={item}/>
             ))}
         </div>
