@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-
+import mongoose from "mongoose";
+import bookRoute from "./route/book.route.js";
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,9 @@ try {
 } catch (error) {
   console.log("Error", error);
 }
+
+
+app.use("/book", bookRoute) 
 
 app.listen(PORT, () => {
   console.log(`example app runiinig on prot${PORT}`);
