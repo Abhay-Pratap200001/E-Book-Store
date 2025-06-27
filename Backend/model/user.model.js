@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 
 // Define the user schema with the fields required for registration
 const userSchema = mongoose.Schema({
-    
   // Full name of the user (required field)
   fullname: {
     type: String,
