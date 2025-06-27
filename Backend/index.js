@@ -2,10 +2,13 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import bookRoute from "./route/book.route.js";  // Book route handlers
+import userroute from "./route/user.route.js"
 import cors from "cors" // CORS middleware to allow frontend-backend communication
-
 const app = express();
+
 app.use(cors())   // Load environment variables from .env file
+app.use(express.json())
+
 dotenv.config();
 
 // Define server port and MongoDB URI from environment variables
@@ -23,8 +26,10 @@ try {
 
 
 app.use("/book", bookRoute) 
+app.use("/user", userroute);
 
 app.listen(PORT, () => {
   console.log(`example app runiinig on prot${PORT}`);
 });
 
+// 3.20 min 
