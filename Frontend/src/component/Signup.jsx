@@ -22,7 +22,7 @@ function Signup() {
      {/* Centering the signup box on full screen */}
       <div className="flex h-screen items-center justify-center">
         <div className="border border-green-400 shadow-2xl p-13 rounded-md">
-          <div className="md:w-[450px]">
+          <div className="md:w-[500px]">
 
               {/* Signup Form */}
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -46,7 +46,7 @@ function Signup() {
                   className="w-80 px-3 py-1 border rounded-md outline-none"
                   {...register("name", { required: true })}/>
                 {errors.name && (
-                  <span className="text-sm text-red-600">
+                  <span className="text-sm text-red-600 pl-2">
                     This field is required
                   </span>
                 )}
@@ -62,7 +62,7 @@ function Signup() {
                   className="w-80 px-3 py-1 border rounded-md outline-none"
                   {...register("email", { required: true })}/>
                 {errors.email && (
-                  <span className="text-sm text-red-600">
+                  <span className="text-sm text-red-600 pl-2">
                     This field is required
                   </span>
                 )}
@@ -78,7 +78,7 @@ function Signup() {
                   className="w-80 px-3 py-1 border rounded-md outline-none"
                   {...register("password", { required: true })}/>
                 {errors.password && (
-                  <span className="text-sm text-red-600">
+                  <span className="text-[13px] text-red-600 pl-2">
                     This field is required
                   </span>
                 )}
@@ -93,7 +93,7 @@ function Signup() {
                 </button>
 
                {/* Open Login dialog modal */}
-                <p className="text-sm mt-1.5">
+                <p className="text-sm mt-1.5 ">
                   Visit to Page!
                   <button
                     type="button"

@@ -1,5 +1,3 @@
-import React from "react";
-
 // Importing reusable components
 import Navbar from "../component/Navbar";
 import Course from "../component/Course";
@@ -14,6 +12,7 @@ function Courses() {
 
       {/* Main content area - ensures full height on screen */}
       <div className="min-h-screen">
+
         <Course /> {/* Displays all the course cards */}
       </div>
 

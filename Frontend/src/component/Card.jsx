@@ -1,4 +1,3 @@
-import React from "react";
 // Cards component receives `item` prop (book data)
 function Cards({ item }) {
   return (

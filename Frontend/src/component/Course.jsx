@@ -8,8 +8,10 @@ import axios from "axios"
 function Course() {
   const [book, setBook] = useState([])
   useEffect(() =>{
-    const getBook = async ()  =>{
+    const getBook = async ()  =>{ // Fetching data brom backend 
       try {
+
+        //resposible for giving data from backend
         const res = await axios.get("http://localhost:4001/book")
         console.log(res.data);
         setBook(res.data)
