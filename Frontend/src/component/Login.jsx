@@ -1,109 +1,120 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";// React Hook Form for validation and form control
-import axios from "axios";
-import toast from "react-hot-toast";
+import { useForm } from "react-hook-form"; // For form validation and management
+import axios from "axios"; // For making HTTP requests
+import toast from "react-hot-toast"; // For showing toast notifications
 
 function Login() {
-  // Initialize react-hook-form
+  // Destructure register, handleSubmit, and errors from useForm
   const {
-  register,
-  handleSubmit,
-  formState: { errors },
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm();
 
-  // Function called on form submit
-  const onSubmit =async (data) => {
-       const userInfo ={ //Create a new user object from form data
-          email:data.email,
-          password:data.password}
-        await axios.post("http://localhost:4001/user/login",userInfo)// Send the user data to backend using POST request
-        .then((res) =>{// Handle the successful response
-          console.log(res.data);
-          if (res.data) {// Show a success alert if the user is created
-          toast.success('Loggedin Successfully 😊');          
-        }
-          localStorage.setItem("Users", JSON.stringify(res.data.user))//Store user data in localStorage (optional)
-        }).catch((error) =>{//Handle any errors from the server
-           if (error.response) {
-        console.log(error);
-        toast.error("Error 😒" + error.response.data.message);
-       }
-      })
-     }
+  // Function called when the form is submitted
+  const onSubmit = async (data) => {
+    const userInfo = {
+      email: data.email,
+      password: data.password,
+    };
 
+    // Send POST request to login route
+    await axios
+      .post("http://localhost:4001/user/login", userInfo)
+      .then((res) => {
+        console.log(res.data);
+
+        if (res.data) {
+          // Show success message
+          toast.success("Loggedin Successfully");
+
+          // Close the modal
+          document.getElementById("my_modal_3").close();
+
+          // Store user in localStorage and reload the page after a short delay
+          setTimeout(() => {
+            window.location.reload();
+            localStorage.setItem("Users", JSON.stringify(res.data.user));
+          }, 1000);
+        }
+      })
+
+      .catch((err) => {
+        if (err.response) {
+          console.log(err);
+          toast.error("Error: " + err.response.data.message);
+          setTimeout(() => {}, 2000);
+        }
+      });
+  };
+
+  
   return (
     <div>
-
-      {/* Custom modal using <dialog> tag */}
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
 
-          {/* Login form */}
+           {/* Form submission handler */}
           <form onSubmit={handleSubmit(onSubmit)} method="dialog">
 
-            {/* Close button – navigates to home */}
+            {/* Close (X) button at the top-right */}
             <Link
-              to={"/"}
-              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              to="/"
+              className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              onClick={() => document.getElementById("my_modal_3").close()}
+            >
               ✕
             </Link>
+            <h3 className="font-bold text-lg">Login</h3>
 
-            <h3 className="font-bold text-lg">Login!</h3>
+            {/* Email */}
             <div className="mt-4 space-y-2">
               <span>Email</span>
               <br />
-
-              {/* Email Input */}
               <input
                 type="email"
-                placeholder="Enter you email"
+                placeholder="Enter your email"
                 className="w-80 px-3 py-1 border rounded-md outline-none"
-                {...register("email", { required: true })}/>
-              <br/>
-
-              {/* Show error if email is empty */}
+                {...register("email", { required: true })}
+              />
+              <br />
               {errors.email && (
-                <span className="text-sm text-red-600">
+                <span className="text-sm text-red-500">
                   This field is required
                 </span>
               )}
             </div>
 
-            {/* Password Input */}
+            {/* password */}
             <div className="mt-4 space-y-2">
               <span>Password</span>
               <br />
-
               <input
-                type="Password"
-                placeholder="Enter Password"
+                type="password"
+                placeholder="Enter your password"
                 className="w-80 px-3 py-1 border rounded-md outline-none"
                 {...register("password", { required: true })}/>
               <br />
-
-              {/* Show error if password is empty */}
-                {errors.password && (
-                <span className="text-sm text-red-600">
+              {errors.password && (
+                <span className="text-sm text-red-500">
                   This field is required
                 </span>
               )}
             </div>
 
-            {/* Submit Button and Signup Link */}
-            <div className="flex justify-around mt-4">
-              <button className="bg-gray-400 text-black rounded-md px-3 py-1 hover:bg-white duration-300">
+            {/* Button */}
+            <div className="flex justify-around mt-6">
+              <button className="bg-pink-500 text-white rounded-md px-3 py-1 hover:bg-pink-700 duration-200">
                 Login
               </button>
-
-              {/* Link to Signup Page */}
               <p>
-                Not registered?
+                Not registered?{" "}
                 <Link
-                  to="/singup"
-                  className="underline text-green-600 cursor-pointer">
-                  Singup
-                </Link>
+                  to="/signup"
+                  className="underline text-blue-500 cursor-pointer">
+                Signup
+                </Link>{" "}
               </p>
             </div>
           </form>
@@ -114,5 +125,3 @@ function Login() {
 }
 
 export default Login;
-
-//3.41min

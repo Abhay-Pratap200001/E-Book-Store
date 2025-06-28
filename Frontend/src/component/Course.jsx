@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios"
 
-
 function Course() {
   const [book, setBook] = useState([])
   useEffect(() =>{
     const getBook = async ()  =>{ // Fetching data brom backend 
       try {
-
-        //resposible for giving data from backend
+       //resposible for giving data from backend
         const res = await axios.get("http://localhost:4001/book")
         console.log(res.data);
         setBook(res.data)
