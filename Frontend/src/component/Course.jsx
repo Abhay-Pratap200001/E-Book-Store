@@ -42,7 +42,7 @@ function Course() {
 
             {/*Link Back button for navigate to home page */}
           <Link to="/">
-          <button className="mt-6 bg-gray-400 text-gray-700 px-4 py-2 rounded-md hover:bg-yellow-200 duration-300">
+          <button className="mt-6 w-20 bg-gray-400 text-gray-700 px-1 py-2 rounded-md hover:bg-yellow-200 duration-300">
             Back
           </button>
           </Link>
