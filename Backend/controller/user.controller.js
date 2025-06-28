@@ -17,8 +17,16 @@ export const signup = async (req, res) => {
         email: email,
         password: hashPassword,
       });
+
       await createdUser.save(); // Save the new user to the database
-      res.status(201).json({ message: "User created successfully" });
+      res.status(201).json({
+        message: "User created successfully",
+        user: {
+          id: createdUser._id,
+          fullname: createdUser.fullname,
+          email: createdUser.email,
+        },
+      });
     }
   } catch (error) {
     console.log("Error" + error.message);
@@ -30,8 +38,8 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   try {
-    const { email, password } = req.body;   // Extract email and password from the request body
-    const user = await User.findOne({ email });  // Find the user by email in the database
+    const { email, password } = req.body; // Extract email and password from the request body
+    const user = await User.findOne({ email }); // Find the user by email in the database
     const isMatch = await bcrypt.compare(password, user.password); // Compare the entered password with the stored hashed password
     if (!user || !isMatch) {
       return res.status(400).json({ message: "Invalid username or password" });
@@ -39,7 +47,7 @@ export const login = async (req, res) => {
       res.status(200).json({
         message: "Login successful",
         user: {
-          __id: user.__id,
+         _id: user._id,
           fullname: user.fullname,
           email: user.email,
         },
@@ -47,6 +55,6 @@ export const login = async (req, res) => {
     }
   } catch (error) {
     console.log("Error" + error.message);
-      res.status(500).json({ message: "Internal server error" })
+    res.status(500).json({ message: "Internal server error" });
   }
 };

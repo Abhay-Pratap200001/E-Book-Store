@@ -6,7 +6,7 @@ import userroute from "./route/user.route.js"
 import cors from "cors" // CORS middleware to allow frontend-backend communication
 const app = express();
 
-app.use(cors())   // Load environment variables from .env file
+app.use(cors())  // Load environment variables from .env file
 app.use(express.json())
 
 dotenv.config();
