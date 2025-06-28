@@ -22,13 +22,14 @@ function Signup() {
     fullname:data.fullname,
     email:data.email,
     password:data.password}
-    await axios.post("http://localhost:4001/user/signup",userInfo) // Send the user data to backend using POST request
+    await axios.post("https://e-book-store-mern-gor8.onrender.com/user/signup",userInfo) // Send the user data to backend using POST request
     .then((res) =>{  // Handle the successful response
     console.log(res.data);
     if (res.data) {   // Show a success alert if the user is created
          toast.success("Signup Successfully ❤️");
          navigate(from, {replace:true});
-       }
+      }
+
       localStorage.setItem("Users", JSON.stringify(res.data.user)) //Store user data in localStorage (optional)
     }).catch((error) =>{ //Handle any errors from the server
       if (error.response) {

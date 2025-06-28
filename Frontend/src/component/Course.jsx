@@ -10,8 +10,7 @@ function Course() {
     const getBook = async ()  =>{ // Fetching data brom backend 
       try {
        //resposible for giving data from backend
-        const res = await axios.get("http://localhost:4001/book")
-        console.log(res.data);
+        const res = await axios.get("https://e-book-store-mern-gor8.onrender.com/book")
         setBook(res.data)
           } catch (error) {
         console.log("EROOR", Error);
@@ -48,7 +47,7 @@ function Course() {
           </Link>
         </div>
 
-                {/* Grid layout to display all courses using Cards component */}
+             {/* Grid layout to display all courses using Cards component */}
         <div className="mt-12 grid grid-cols-1 md:grid-cols-4">
             {book.map((item) =>(
                 <Cards key={item.id} item={item}/>

@@ -1,6 +1,3 @@
-// 
-
-
 // Cards component receives `item` prop (book data)
 function Cards({ item }) {
   return (
@@ -21,7 +18,7 @@ function Cards({ item }) {
         <div className="card-body text-white flex flex-col justify-between  p-6 h-full">
           <h2 className="card-title text-base font-bold line-clamp-1">
             {item.name}
-            <div className="badge badge-secondary ml-2 my-1">NEW</div>
+            <div className="badge badge-secondary ml-2 my-1">{item.category}</div>
           </h2>
 
           {/* Book description/title */}
