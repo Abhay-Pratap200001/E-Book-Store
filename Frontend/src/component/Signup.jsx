@@ -2,11 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Login from "./Login";
 import { useForm } from "react-hook-form";
-import axios from "axios"
+import axios from "axios" 
+import toast from "react-hot-toast";
 
 function Signup() {
-
-  // useForm hook to handle form state and validation
+   // useForm hook to handle form state and validation
   const {
     register,
     handleSubmit,
@@ -14,23 +14,23 @@ function Signup() {
   } = useForm();
 
    // Called when form is submitted and validation passes
-  const onSubmit = async(data) => {
+    const onSubmit = async(data) => {
     const userInfo ={  //Create a new user object from form data
-      fullname:data.fullname,
-      email:data.email,
-      password:data.password}
+    fullname:data.fullname,
+    email:data.email,
+    password:data.password}
     await axios.post("http://localhost:4001/user/signup",userInfo) // Send the user data to backend using POST request
     .then((res) =>{  // Handle the successful response
-      console.log(res.data);
-      if (res.data) {   // Show a success alert if the user is created
-        alert("Signup Successfully")
+    console.log(res.data);
+    if (res.data) {   // Show a success alert if the user is created
+         toast.success("Signup Successfully ❤️")
       }
       localStorage.setItem("Users", JSON.stringify(res.data.user)) //Store user data in localStorage (optional)
     }).catch((error) =>{ //Handle any errors from the server
-       if (error.response) {
+      if (error.response) {
     console.log(error);
-    alert("Error" + error.response.data.message)
-   }
+     toast.error("Error 💀" + error.response.data.message)
+      }
     })
   };
 

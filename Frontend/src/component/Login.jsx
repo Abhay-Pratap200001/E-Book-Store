@@ -1,17 +1,36 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form"; // React Hook Form for validation and form control
+import { useForm } from "react-hook-form";// React Hook Form for validation and form control
+import axios from "axios";
+import toast from "react-hot-toast";
 
 function Login() {
   // Initialize react-hook-form
   const {
-    register,
-    handleSubmit,
-    formState: { errors },
+  register,
+  handleSubmit,
+  formState: { errors },
   } = useForm();
 
   // Function called on form submit
-  const onSubmit = (data) => console.log(data);
+  const onSubmit =async (data) => {
+       const userInfo ={ //Create a new user object from form data
+          email:data.email,
+          password:data.password}
+        await axios.post("http://localhost:4001/user/login",userInfo)// Send the user data to backend using POST request
+        .then((res) =>{// Handle the successful response
+          console.log(res.data);
+          if (res.data) {// Show a success alert if the user is created
+          toast.success('Loggedin Successfully 😊');          
+        }
+          localStorage.setItem("Users", JSON.stringify(res.data.user))//Store user data in localStorage (optional)
+        }).catch((error) =>{//Handle any errors from the server
+           if (error.response) {
+        console.log(error);
+        toast.error("Error 😒" + error.response.data.message);
+       }
+      })
+     }
 
   return (
     <div>
@@ -95,3 +114,5 @@ function Login() {
 }
 
 export default Login;
+
+//3.41min
