@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import Login from "./Login";
+import { useAuth } from "../context/AuthProvider";
 
 const Navbar = () => {
-  
   //state for navbar
   const [sticky, setSticky] = useState(false);
   useEffect(() => {
